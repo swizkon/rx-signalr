@@ -15,6 +15,17 @@ if (!String.prototype.supplant) {
 
 var allChannels = new Vue({
     //   <button v-on:click="counter += 1">Add 1</button>
+    el: '#all-channels',
+    data: {
+        label: 'The channels',
+        channels: []
+    }
+});
+
+Vue.component('channel-item',
+{
+    props: ['channel'],
+    template: '<li>{{ channel.name }}</li>'
 });
 
 
@@ -62,6 +73,8 @@ $(function () {
         $stockTableBody = $stockTable.find('tbody'),
         rowTemplate = '<tr data-symbol="{Symbol}"><td>{Symbol}</td><td>{Price}</td><td>{DayOpen}</td><td>{Direction} {Change}</td><td>{PercentChange}</td></tr>';
 
+    var xingZen = $.connection.xingZen;
+
     function formatStock(stock) {
         return $.extend(stock, {
             Price: stock.Price.toFixed(2),
@@ -71,6 +84,12 @@ $(function () {
     }
 
     function init() {
+
+        xingZen.server.allChannels().done(function(channels) {
+            allChannels.channels = channels;
+            console.log(channels);
+        });
+
         ticker.server.getAllStocks().done(function (stocks) {
             $stockTableBody.empty();
             $.each(stocks, function () {

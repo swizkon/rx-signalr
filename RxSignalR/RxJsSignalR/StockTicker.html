@@ -43,6 +43,13 @@
         <div class="col-sm-2">
             <h3>Users <small> by name</small>
             </h3>
+
+            <div id="all-channels">
+                <h3>{{label}}</h3>
+                <ul>
+                    <channel-item v-for="item in channels" v-bind:channel="item"></channel-item>
+                </ul>
+            </div>
         </div>
         <div class="col-sm-3">
             <h3>Messages <small> most recent</small>

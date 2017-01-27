@@ -149,6 +149,9 @@
     <Compile Include="StockTicker.cs" />
     <Compile Include="StockTickerHub.cs" />
     <Compile Include="WorkerController.cs" />
+    <Compile Include="XingZenHub.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
